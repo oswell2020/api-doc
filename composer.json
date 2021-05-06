@@ -1,12 +1,8 @@
 {
-    "name": "weiwei/api-doc",
+    "name": "oswell/api-doc",
     "description": "The ThinkPHP5 Api Doc Package",
     "type": "think-extend",
     "authors": [
-        {
-            "name": "weiwei",
-            "email": "1763692101@qq.com"
-        }
     ],
     "license": "MIT",
     "autoload": {
