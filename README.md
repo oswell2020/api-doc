@@ -6,7 +6,7 @@
 composer require oswell/api-doc
 ```
 
-####2、配置参数
+####2、配置参数 
 - 5.0安装好扩展后在 application\extra\ 文件夹下会生成 doc.php 配置文件
 - 5.1安装好扩展后在 application\config\ 文件夹下会生成 doc.php 配置文件
 - 在controller参数中添加对应的类
