@@ -3,7 +3,7 @@
 ### 使用方法
 ####1、安装扩展
 ```
-composer require weiwei/api-doc
+composer require oswell/api-doc
 ```
 
 ####2、配置参数
