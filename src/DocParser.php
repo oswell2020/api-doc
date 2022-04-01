@@ -128,6 +128,9 @@ class DocParser
             'fixed' => '固定值',
             'enum' => '枚举类型',
             'object' => '对象',
+            'time' => '时间',
+            'datetime' => '日期时间',
+            'timestamp' => '时间戳',
         ];
         return array_key_exists($type,$typeMaps) ? $typeMaps[$type] : $type;
     }
