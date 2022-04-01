@@ -127,6 +127,18 @@ class Doc
                         array_push($list[$key]['actions'], $module);
                     }
                 } else {
+                    $total = 0;
+                    foreach ($module['actions'] as &$item) {
+                        if (key_exists('actions', $item)) {
+                            $total += count($item['actions']);
+                            $item['title'] .= '(' . count($item['actions']) . ')';
+                        }
+                    }
+                    if ($total > 0) {
+                        $module['title'] .= '(' . $total . ')';
+                    } else {
+                        $module['title'] .= '(' . count($module['actions']) . ')';
+                    }
                     array_push($list, $module);
                 }
             }
