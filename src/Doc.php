@@ -2,6 +2,8 @@
 
 namespace Api\Doc;
 
+use think\facade\Cookie;
+
 class Doc
 {
     protected $config = [
