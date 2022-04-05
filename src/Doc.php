@@ -70,6 +70,7 @@ class Doc
      */
     public function getList()
     {
+        Cookie::set('api_num', 0);
         $controller = $this->config['controller'];
         $list = [];
         foreach ($controller as $class) {
@@ -131,13 +132,17 @@ class Doc
                     foreach ($module['actions'] as &$item) {
                         if (key_exists('actions', $item)) {
                             $total += count($item['actions']);
-                            $item['title'] .= '(' . count($item['actions']) . ')';
+                            $item['title'] .= ' (' . count($item['actions']) . ')';
                         }
                     }
                     if ($total > 0) {
-                        $module['title'] .= '(' . $total . ')';
+                        $api_num = Cookie::get('api_num');
+                        Cookie::set('api_num', $api_num + $total);
+                        $module['title'] .= ' (' . $total . ')';
                     } else {
-                        $module['title'] .= '(' . count($module['actions']) . ')';
+                        $api_num = Cookie::get('api_num');
+                        Cookie::set('api_num', $api_num + count($module['actions']));
+                        $module['title'] .= ' (' . count($module['actions']) . ')';
                     }
                     array_push($list, $module);
                 }

@@ -19,6 +19,7 @@
 {block name="main"}
 <div class="zt_header">
     {$title}
+    <span id="api_num"></span>
     <span>{$version}</span>
     <span class="zt_download">{$copyright}</span>
 </div>
@@ -58,6 +59,18 @@
             }
         }
     };
+
+    function getCookie(cname) {
+        var name = cname + "=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i].trim();
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
 
     function beforeClick(treeId, treeNode, clickFlag) {
         if (treeNode.isParent) {
@@ -126,6 +139,8 @@
             }
         });
         initHeight();
+
+        $('#api_num').html('(' + getCookie('api_num') + ')')
     });
 
     function initHeight() {

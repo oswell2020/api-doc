@@ -51,16 +51,14 @@
                         <th>类型</th>
                         <th>是否必须</th>
                         <th>默认值</th>
-                        <th>其他</th>
                         <th>说明</th>
                     </tr>
                     {volist name="doc.param" id="param"}
                     <tr>
-                        <td>{$param.name|default="-"}</td>
+                        <td onclick="copyText('{$param.name}')" style="cursor: pointer">{$param.name|default="-"}</td>
                         <td>{$param.type|default="-"}</td>
                         <td>{if condition="$param.require eq 1"}必填{else/}非必填{/if}</td>
                         <td>{$param.default|default="-"}</td>
-                        <td>{$param.other|default="-"}</td>
                         <td>{$param.desc|default="-"}</td>
                     </tr>
                     {/volist}
@@ -332,10 +330,7 @@
         aux.select();
         document.execCommand("copy");
         document.body.removeChild(aux);
-        layer.tips('复制成功', '#url', {
-            tips: [1, '#646464'],
-            time: 1500
-        });
+        layer.msg('复制成功');
     }
 </script>
 {/block}
