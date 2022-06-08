@@ -19,7 +19,7 @@ class Doc
             'info' => "提示信息",
         ],
     ];
-    
+
     /**
      * 架构方法 设置参数
      * @access public
@@ -29,7 +29,7 @@ class Doc
     {
         $this->config = array_merge($this->config, $config);
     }
-    
+
     /**
      * 使用 $this->name 获取配置
      * @access public
@@ -40,7 +40,7 @@ class Doc
     {
         return $this->config[$name];
     }
-    
+
     /**
      * 设置验证码配置
      * @access public
@@ -54,7 +54,7 @@ class Doc
             $this->config[$name] = $value;
         }
     }
-    
+
     /**
      * 检查配置
      * @access public
@@ -65,7 +65,7 @@ class Doc
     {
         return isset($this->config[$name]);
     }
-    
+
     /**
      * 获取接口列表
      * @return array
@@ -144,15 +144,19 @@ class Doc
                     } else {
                         $api_num = Cookie::get('api_num');
                         Cookie::set('api_num', $api_num + count($module['actions']));
-                        $module['title'] .= ' (' . count($module['actions']) . ')';
+                        if (key_exists('title', $module)) {
+                            $module['title'] .= ' (' . count($module['actions']) . ')';
+                        }
                     }
-                    array_push($list, $module);
+                    if (key_exists('title', $module)) {
+                        array_push($list, $module);
+                    }
                 }
             }
         }
         return $list;
     }
-    
+
     /**
      * 文档目录列表
      * @return array
@@ -186,7 +190,7 @@ class Doc
         }
         return $list;
     }
-    
+
     /**
      * 获取类中指导方法注释详情
      * @param $class
@@ -214,7 +218,7 @@ class Doc
         }
         return $action_doc;
     }
-    
+
     /**
      * 文档列表搜素
      * @param string $keyword
@@ -239,7 +243,8 @@ class Doc
                             if ((isset($action_doc['title']) && strpos($action_doc['title'], $keyword) !== false)
                                 || (isset($action_doc['description']) && strpos($action_doc['description'], $keyword) !== false)
                                 || (isset($action_doc['author']) && strpos($action_doc['author'], $keyword) !== false)
-                                || (isset($action_doc['url']) && strpos($action_doc['url'], $keyword) !== false)) {
+                                || (isset($action_doc['url']) && strpos($action_doc['url'], $keyword) !== false)
+                            ) {
                                 array_push($list, $action_doc);
                             }
                         }
@@ -249,7 +254,7 @@ class Doc
         }
         return $list;
     }
-    
+
     /**
      * 格式化数组为json字符串-用于格式显示
      * @param array $doc
@@ -276,7 +281,7 @@ class Doc
         $json .= '}';
         return $json;
     }
-    
+
     /**
      * 格式化json字符串-用于展示
      * @param $name
@@ -291,7 +296,7 @@ class Doc
             return '"' . $name . '":"' . $val . '",<br/>';
         }
     }
-    
+
     /**
      * 递归转换数组为json字符格式-用于展示
      * @param $doc
