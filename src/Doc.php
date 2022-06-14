@@ -132,7 +132,7 @@ class Doc
                 } else {
                     $total = 0;
                     foreach ($module['actions'] as &$item) {
-                        if (key_exists('actions', $item)) {
+                        if (key_exists('actions', $item) and key_exists('title', $item)) {
                             $total += count($item['actions']);
                             $item['title'] .= ' (' . count($item['actions']) . ')';
                         }
@@ -140,7 +140,9 @@ class Doc
                     if ($total > 0) {
                         $api_num = Cookie::get('api_num');
                         Cookie::set('api_num', $api_num + $total);
-                        $module['title'] .= ' (' . $total . ')';
+                        if (key_exists('title', $module)) {
+                            $module['title'] .= ' (' . $total . ')';
+                        }
                     } else {
                         $api_num = Cookie::get('api_num');
                         Cookie::set('api_num', $api_num + count($module['actions']));
