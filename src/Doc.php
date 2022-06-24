@@ -183,7 +183,9 @@ class Doc
                         array_push($floder['children'], $class_doc);
                         array_push($list, $floder);
                     } else {
-                        array_push($list[$key]['children'], $class_doc);
+                        if (key_exists('children', $list[$key])) {
+                            array_push($list[$key]['children'], $class_doc);
+                        }
                     }
                 } else {
                     array_push($list, $class_doc);
